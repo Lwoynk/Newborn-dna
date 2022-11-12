@@ -1,0 +1,8 @@
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\obj\Debug\Second Project_Life on Mars.csproj.AssemblyReference.cache
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\obj\Debug\Second Project_Life on Mars.csproj.SuggestedBindingRedirects.cache
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\obj\Debug\Second Project_Life on Mars.csproj.CoreCompileInputs.cache
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\bin\Debug\Second Project_Life on Mars.exe.config
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\bin\Debug\Second Project_Life on Mars.exe
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\bin\Debug\Second Project_Life on Mars.pdb
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\obj\Debug\Second Project_Life on Mars.exe
+C:\Users\muzam\source\repos\Second Project_Life on Mars\Second Project_Life on Mars\obj\Debug\Second Project_Life on Mars.pdb
