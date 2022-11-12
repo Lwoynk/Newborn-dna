@@ -12,98 +12,64 @@ namespace Second_Project_Life_on_Mars
         static void Main(string[] args)
         {
 
+            try
+            {
 
+                //operation 1.load a dna sequence from a file
+                string filepath = "";
+                string dna_from_file = "";
 
+                if (File.Exists(filepath))
+                {
+                    StreamReader f = File.OpenText(filepath);
+                    dna_from_file = f.ReadLine();
+                    f.Close();
+                }
+                Console.WriteLine(dna_from_file);
 
+                operation16(dna_from_file.ToUpper());
 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //try
-            //{
-
-            //    //Operation 1.Load a DNA sequence from a file
-            //    string FilePath = "C:\\Users\\muzam\\source\\repos\\Second Project_Life on Mars\\Second Project_Life on Mars\\Files\\Codes.txt";
-            //string DNA_From_File = "";
-
-            //if (File.Exists(FilePath))
-            //{
-            //    StreamReader f = File.OpenText(FilePath);
-            //    DNA_From_File = f.ReadLine();
-            //    f.Close();
-            //}
-            //Console.WriteLine(DNA_From_File);
-            
-            //    Operation16(DNA_From_File.ToUpper());
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-
-            //Console.ReadLine();
+            Console.ReadLine();
 
 
         }
 
-        ////function for 16.Operation
-        //static void Operation16(string a)
-        //{
-        //    try
-        //    {
-        //        int ABonds = 0, TBonds = 0, GBonds =0, CBonds = 0, TotalBonds = 0;
+        //function for 16.operation
+        static void operation16(string a)
+        {
+            try
+            {
+                int abonds = 0, tbonds = 0, gbonds =0, cbonds = 0, totalbonds = 0;
 
-        //        char[] array = a.ToCharArray();
-        //        for (int i = 0; i < array.Length ; i++)
-        //        {
-        //            if (array[i] == 'A')
-        //            { ABonds++; }
-        //            else if (array[i] == 'T')
-        //            { TBonds++; }
-        //            else if (array[i] == 'G' )
-        //            { GBonds++; }
-        //            else if (array[i] == 'C' )
-        //            { CBonds++; }
+                char[] array = a.ToCharArray();
+                for (int i = 0; i < array.Length ; i++)
+                {
+                    if (array[i] == 'a')
+                    { abonds++; }
+                    else if (array[i] == 't')
+                    { tbonds++; }
+                    else if (array[i] == 'g' )
+                    { gbonds++; }
+                    else if (array[i] == 'c' )
+                    { cbonds++; }
 
-        //            TotalBonds = (GBonds+CBonds) * 3 + (ABonds+TBonds) * 2;
-        //        }
-        //        Console.WriteLine("Number of pairing with 2-hydrogen bonds  :  {0}", (ABonds + TBonds));
-        //        Console.WriteLine("Number of pairing with 3-hydrogen bonds  :  {0}", (GBonds + CBonds));
-        //        Console.WriteLine("Total bonds is  :  {0}", TotalBonds);
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //    }
-        //}
+                    totalbonds = (gbonds+cbonds) * 3 + (abonds+tbonds) * 2;
+                }
+                Console.WriteLine("number of pairing with 2-hydrogen bonds  :  {0}", (abonds + tbonds));
+                Console.WriteLine("number of pairing with 3-hydrogen bonds  :  {0}", (gbonds + cbonds));
+                Console.WriteLine("total bonds is  :  {0}", totalbonds);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
     }
 }
