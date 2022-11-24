@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,213 +11,19 @@ namespace Second_Project_Life_on_Mars
     {
         static void Main(string[] args)
         {
-            char[] operation3result = Operation3();
-
-            //try
-            //{
-
-            Console.WriteLine(operation3result);
-
-            Console.Write("enter number for x starting from: ");
-            int x = Convert.ToInt32(Console.ReadLine());
-
-            //Console.Write("enter number for y how much: ");
-            //int y = Convert.ToInt32(Console.ReadLine());
 
 
-            //operation 6
-            //char[] operation6result;
-            //operation6result = operation3result;
-
-            //for (int i = 0; i < operation6result.Length; i++)               
-            //{
-            //     char temp = operation6result[i];
-            //    if (operation6result[i] == 'A')
-            //        Console.Write('T');
-            //    else if (operation6result[i] == 'T')
-            //        Console.Write('A');
-            //    else if (operation6result[i] == 'G')
-            //        Console.Write('C');
-            //    else if (operation6result[i] == 'C')
-            //        Console.Write('G');
-            //    else
-            //        Console.Write(" ");
-
-            //}
-
-
-            //operation 8
-
-            //char[] operation8result;
-            //operation8result = operation3result;
-            ////                              28                                        9                                 17
-            //for (int i = 0; i < operation3result.Length; i++)    //int i = (((x-1) * 4) + 1); i < (((x-1) * 4) + 1) + (4 * y); i++
-            //{
-            //    if (i < (((x - 1) * 4) + 1)) 
-            //    {
-            //        operation8result[i] = operation3result[i];
-            //        Console.Write(operation8result[i]);
-            //    }
-            //    else if(i >= (((x - 1) * 4) + 1) + (4 * y)) 
-            //    {
-            //        operation8result[i- (((x - 1) * 4) + 1)] = operation3result[i];
-            //        Console.Write(operation8result[i - (((x - 1) * 4) + 1)]);
-            //    }
-            //}
+            Console.WriteLine(Operation3());
+            Console.WriteLine(Space_remover(Operation3()));
 
 
 
+            char[] arr = { 'A', '8','T', ' ', '*', ' ', 'T', 'G',' ',' ', ' ', ' ', ' ', ' ', ' ','*', '*', 'T', 'T', 'A', 'A', ' ', ' ', ' ', ' ', ' ', 'T', 'A', 'G' };
+            Console.WriteLine(Space_remover(arr));
+            //Console.WriteLine(Check_Gene(arr));
 
 
 
-            //operation 9
-            //                              8
-            //DNA strand(stage 1) :  ATG ACT AGA TAT TGA
-            //Codon sequence: GAT GAG
-            //Starting from        :  3
-            //                                      16
-            //DNA strand(stage 2) :  ATG ACT GAT GAG AGA TAT TGA
-
-            //Console.Write("\nenter string for add: ");
-            //string k = Convert.ToString(Console.ReadLine());
-
-            //char[] ekleme = k.ToCharArray();
-
-            //char[] operation9result;
-            //operation9result = operation3result;
-
-            //for (int i = 0; i < 9; i++)
-            //{
-            //    operation3result[i] = operation9result[i];
-            //    Console.Write(operation9result[i]);
-            //}
-
-            //for (int l = 0; l < ekleme.Length; l++)
-            //{
-            //    operation9result[l + 9] = ekleme[l];
-            //    Console.Write(operation9result[l + 9]);
-            //}
-
-
-            //for (int j = 0; j <= operation3result.Length - 17; j++)
-            //{
-            //    operation3result[j + 9] = operation9result[16 + j];
-            //    Console.Write(operation9result[j + 16]);
-            //}
-
-
-
-
-
-
-
-
-            //operation 10   ***** yarısı bitti *****
-
-            //Console.Write("\nenter string for found: "); //******Bu kısım çalılşıyor else yok ama sadece 3 lü arıyor ******
-            //string z = Convert.ToString(Console.ReadLine());
-
-            //char[] arama = z.ToCharArray();
-            //int sayac = x;
-            //int sayac2 = 0;
-
-            //for (int i = (x - 1) * 4 + 1; i <= operation3result.Length - arama.Length; i++)
-            //{
-            //    if (operation3result[i] == arama[sayac2] /*&& operation3result[i + 1] == arama[1] && operation3result[i + 2] == arama[2]*/)
-            //    {
-            //        sayac++;
-            //        sayac2++;
-            //        Console.WriteLine("\nvar");
-            //        break;
-            //    }
-
-            //}
-
-            //if (operation3result[(x - 1) * 4 + 1] == arama[sayac2] /*&& operation3result[(x - 1) * 4 + 1 + 1] == arama[1] && operation3result[(x - 1) * 4 + 1 + 2] == arama[2]*/)
-            //{
-            //    Console.WriteLine(sayac - 1); 
-            //}
-            //else
-            //{
-            //    Console.WriteLine(sayac); 
-            //}
-
-
-            //else
-            //{
-            //    Console.WriteLine("yok");
-            //    break;
-            //}
-            //
-
-
-
-
-            //operation 11  
-
-            //if (y % 2 == 1)
-            //{
-            //    for (int i = ((x - 1) * 4) + 1; i < ((x - 1) * 4) + ((y / 2) * 4); i++)
-            //    {
-            //        char temp = operation3result[i];
-            //        operation3result[i] = operation3result[i + (y * 2) + 2];
-            //        operation3result[i + ((y * 2) + 2)] = temp;
-            //    }
-            //    Console.WriteLine(operation3result);
-            //}
-
-
-
-            //if (y % 2 == 0)
-            //{
-            //    for (int i = ((x - 1) * 4) + 1; i <= (((x - 1) * 4) - 1) + ((y / 2) * 4); i++)
-            //    {
-            //        char temp = operation3result[i];
-            //        operation3result[i] = operation3result[i + y*2];
-            //        operation3result[i + y*2] = temp;
-            //    }
-            //    Console.WriteLine(operation3result);
-            //}
-
-
-
-
-            //operation 12 *****BİTTİ****
-
-            //Console.Write("\nOperation 12");
-            //int counter = 0;
-            //for (int i = 0; i < operation3result.Length - 2; i++)
-            //{
-            //    if (operation3result[i] == 'A' && operation3result[i + 1] == 'T' && operation3result[i + 2] == 'G')
-            //    {
-            //        counter++;
-            //    }
-            //}
-            //Console.WriteLine("\nNumber of genes: " + counter);
-
-
-
-
-
-            //    //operation 1.load a dna sequence from a file
-            //    string filepath = "";
-            //    string dna_from_file = "";
-
-            //    if (File.Exists(filepath))
-            //    {
-            //        StreamReader f = File.OpenText(filepath);
-            //        dna_from_file = f.ReadLine();
-            //        f.Close();
-            //    }
-            //    Console.WriteLine(dna_from_file);
-
-            //    operation16(dna_from_file.ToUpper());
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
 
 
             Console.ReadLine();
@@ -227,12 +31,64 @@ namespace Second_Project_Life_on_Mars
 
         }
 
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
+        static void Operation1()
+        {
+            try
+            {
+                //operation 1.load a dna sequence from a file
+                string filepath = "";
+                string dna_from_file = "";
+
+                if (File.Exists(filepath))
+                {
+                    StreamReader f = File.OpenText(filepath);
+                    dna_from_file = f.ReadLine();
+                    f.Close();
+                }
+                Console.WriteLine(dna_from_file);
+                operation16(dna_from_file.ToUpper());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
+        static String My_ToUpper(string a) {
+            
+            for (int i = 0; i < a.Length ; i++)
+            {
+
+            }
+
+
+            return a; 
+        }
+        //-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
         //function for 16.operation
         static void operation16(string a)
         {
             try
             {
-                int abonds = 0, tbonds = 0, gbonds = 0, cbonds = 0, totalbonds = 0;  //bağ sayıları
+                int abonds = 0, tbonds = 0, gbonds = 0, cbonds = 0, totalbonds = 0;
 
                 char[] array = a.ToCharArray();
                 for (int i = 0; i < array.Length; i++)
@@ -257,6 +113,7 @@ namespace Second_Project_Life_on_Mars
                 Console.WriteLine(e.Message);
             }
         }
+        //-------------------------------------------------------------------------------------------------------------
 
 
 
@@ -272,9 +129,8 @@ namespace Second_Project_Life_on_Mars
 
 
 
-
-
-        public static char[] Operation3()
+        //-------------------------------------------------------------------------------------------------------------
+        static char[] Operation3()
         {
             Random random = new Random();
             char[] Nucleotides = { 'A', 'C', 'G', 'T' };
@@ -309,7 +165,6 @@ namespace Second_Project_Life_on_Mars
                     {
                         codons[i] = ' ';
                     }
-
                 }
 
                 // genin start ve stop kodonlarini ekledik
@@ -332,17 +187,17 @@ namespace Second_Project_Life_on_Mars
             }
 
             // son olarak   GenderSelection()  fonskiyonundan gelen cinsiyeti genini diger genlerin uzerine yapistirir 
-            //dna = MyFunctionForArrayConcatenation(GenderSelection(), dna);
-
-            //dna[15] = '';
-
+            dna = MyFunctionForArrayConcatenation(GenderSelection(), dna);
             /////ve mucize gerceklesir/////
             return dna;
         }
 
 
+
+
+
         //6 cinsiyet ihtimali arasinda birisini secmek icin kullanilmistir
-        public static char[] GenderSelection()
+        static char[] GenderSelection()
         {
 
             Random random = new Random();
@@ -381,16 +236,7 @@ namespace Second_Project_Life_on_Mars
             }
             return gender_array;
         }
-
-
-
-
-
-
-
-
-
-
+       
 
 
 
@@ -423,9 +269,6 @@ namespace Second_Project_Life_on_Mars
             }//sonuc olarak yeni bir dizi gonderir
             return result;
         }
-
-
-
 
 
 
@@ -472,5 +315,300 @@ namespace Second_Project_Life_on_Mars
             return array;
 
         }
+        //-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
+        //DNA daki bosluklari silip islemlerde kolaylik saglamak icin 
+        static char[] Space_remover(char[] array_with_spaces)
+        {    
+            char [] spaceless_Array = new char[100];
+            int count = 0;
+            for (int i = 0; i < array_with_spaces.Length ; i++)
+            {
+                if (array_with_spaces[i] != ' ' )
+                {
+                    spaceless_Array[count] = array_with_spaces[i];                   
+                    count++;
+                }
+            }
+            return spaceless_Array;
+        }
+        //-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        //Operation 4
+        static void Operation4(char[] arrayToCheck)
+        {
+            char[] startCodon = { 'A', 'T', 'G' };
+            char[] stopCodon1 = { 'T', 'A', 'G' };
+            char[] stopCodon2 = { 'T', 'G', 'A' };
+            char[] stopCodon3 = { 'T', 'A', 'A' };
+            int length = arrayToCheck.Length;
+            try
+            {
+                if (arrayToCheck.Length != 0)
+                {
+                    if (length % 3 == 0)
+                    {
+                        if (arrayToCheck[0] == startCodon[0] && arrayToCheck[1] == startCodon[1] && arrayToCheck[2] == startCodon[2])
+                        {
+                            if (arrayToCheck[length - 3] == stopCodon1[0] && arrayToCheck[length - 2] == stopCodon1[1] && arrayToCheck[length - 1] == stopCodon1[2])
+                            {
+                                CheckIfThereIsStartOrStopCodonsInsideGene(arrayToCheck);
+                            }
+                            else if (arrayToCheck[length - 3] == stopCodon2[0] && arrayToCheck[length - 2] == stopCodon2[1] && arrayToCheck[length - 1] == stopCodon2[2])
+                            {
+                                CheckIfThereIsStartOrStopCodonsInsideGene(arrayToCheck);
+                            }
+                            else if (arrayToCheck[length - 3] == stopCodon3[0] && arrayToCheck[length - 2] == stopCodon3[1] && arrayToCheck[length - 1] == stopCodon3[2])
+                            {
+                                CheckIfThereIsStartOrStopCodonsInsideGene(arrayToCheck);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Gene structure error5");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Gene structure error6");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Codon structure error");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Empty gene error");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Unexpected value");
+            }
+        }
+
+
+
+
+
+        //Operation 4'un icinde kullanilan fonksiyon
+        static void CheckIfThereIsStartOrStopCodonsInsideGene(char[] Gene_Sequence)
+        {
+            for (int i = 0; i <= Gene_Sequence.Length - 3; i++)
+            {
+                if (Gene_Sequence[i + 3] == 'A' && Gene_Sequence[i + 4] == 'T' && Gene_Sequence[i + 5] == 'G')
+                {
+                    Console.WriteLine("Gene structure error1");
+                    break;
+                }
+                else if (Gene_Sequence[i + 3] == 'T' && Gene_Sequence[i + 4] == 'A' && (Gene_Sequence[i + 5] == 'A' || Gene_Sequence[i + 5] == 'G'))
+                {
+                    Console.WriteLine("Gene structure error2");
+                    break;
+                }
+                else if (Gene_Sequence[i + 3] == 'T' && Gene_Sequence[i + 4] == 'G' && Gene_Sequence[i + 5] == 'A')
+                {
+                    Console.WriteLine("Gene structure error3");
+                    break;
+                }
+                else if (Gene_Sequence.Length == 6)
+                {
+                    Console.WriteLine("Gene structure is OK. (Not BLOB DNA,but OK)");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Gene structure error4");
+                }
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        static string[] Operation7(char[] GeneArray)
+        {
+
+            string[] Amino_acids = new string[GeneArray.Length / 3];
+
+            for (int i = 0; i < GeneArray.Length; i += 3)
+            {
+                if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Ala";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'G')
+                {
+                    Amino_acids[i / 3] = "Arg";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'T')
+                {
+                    Amino_acids[i / 3] = "Leu";
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'G')
+                {
+                    Amino_acids[i / 3] = "Gly";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Pro";
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Ser";
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Thr";
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'T')
+                {
+                    Amino_acids[i / 3] = "Val";
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Asn";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Lys";
+                    }
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'T')
+                {
+                    if (GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Met";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Ile";
+                    }
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'A' || GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Gln";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "His";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'T')
+                {
+                    if (GeneArray[i + 2] == 'C' || GeneArray[i + 2] == 'T')
+                    {
+                        Amino_acids[i / 3] = "Phe";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Leu";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'G')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Cys";
+                    }
+                    else if (GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Trp";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "END";
+                    }
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Asp";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Glu";
+                    }
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'G')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Ser";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Arg";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Tyr";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "END";
+                    }
+                }
+            }
+
+            return Amino_acids;
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
 }
