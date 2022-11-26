@@ -1,60 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Second_Project_Life_on_Mars
+namespace ConsoleApp1zcxzxczxc
 {
     internal class Program
     {
         static void Main(string[] args)
         {
 
+            //Console.WriteLine(Operation3());
 
-            Console.WriteLine(Operation3());
-            Console.WriteLine(Space_remover(Operation3()));
+            //Operation16(Operation3());
 
 
 
+
+            //Operation 10
+
+            //Operation 10.Find codons(find a codon sequence, starting from mth codon)
+
+            //DNA strand      :  ATG ACT GAT GAG AGA TAT TGA
+            //Codon sequence: GAT GAG
+            //Starting from   :  2
+            //Result: 3
+
+            //DNA strand      :  ATG ACT GAT GAG AGA TAT TGA
+            //Codon sequence: GAT GAG
+            //Starting from   :  4
+            //Result: -1(Not found)
+
+
+            char[] DNA_sequence = Space_remover(Operation3());
+            Console.WriteLine(DNA_sequence);
+
+            Console.WriteLine("\nFind codons (find a codon sequence, starting from mth codon)\n");
+            Console.Write("enter number for m : ");
+            int x = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("\nenter string for search: ");
+
+            string m = Convert.ToString(Console.ReadLine());
+            char[] arama = m.ToCharArray();
+
+
+            int counter9 = x;
+            int sayac9 = 0;
             
-            
-
-
-
-
-
-            Console.ReadLine();
-
-
-        }
-
-
-
-
-        //-------------------------------------------------------------------------------------------------------------
-        static void Operation1()
-        {
-            try
+            for (int i = (x - 1) * 3; i< DNA_sequence.Length - ((x - 1) * 3); i++)
             {
-                //operation 1.load a dna sequence from a file
-                string filepath = "";
-                string dna_from_file = "";
-
-                if (File.Exists(filepath))
+                for (int j = (x - 1) * 3; j < (x - 1) * 3 + arama.Length; j++)
                 {
-                    StreamReader f = File.OpenText(filepath);
-                    dna_from_file = f.ReadLine();
-                    f.Close();
+                    DNA_sequence[j] = arama[sayac9];
+                    counter9++;
+                    sayac9++;
+
+                    if (sayac9 == arama.Length && j == 0 && j % 3 == 0)
+                    {
+                        Console.WriteLine("var");
+                        Console.WriteLine(counter9 / 3);
+                    }
                 }
-                Console.WriteLine(dna_from_file);
-                operation16(dna_from_file.ToUpper());
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+
+
+
+
+
+                Console.ReadLine();
         }
 
 
@@ -64,17 +81,26 @@ namespace Second_Project_Life_on_Mars
 
 
         //-------------------------------------------------------------------------------------------------------------
-        static String My_ToUpper(string a) {
-            
-            for (int i = 0; i < a.Length ; i++)
+        //operation 1.load a dna sequence from a file
+        static char[] Operation1(string filepath)
+        {
+
+            char[] DNA_sequence_in_CharArray;
+            string dna_from_file = "";
+
+            if (File.Exists(filepath))
             {
-
+                StreamReader f = File.OpenText(filepath);
+                dna_from_file = f.ReadLine();
+                f.Close();
             }
+            DNA_sequence_in_CharArray = dna_from_file.ToCharArray();
 
-
-            return a; 
+            return DNA_sequence_in_CharArray;
         }
-        //-------------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -83,34 +109,31 @@ namespace Second_Project_Life_on_Mars
 
         //-------------------------------------------------------------------------------------------------------------
         //function for 16.operation
-        static void operation16(string a)
+        static void Operation16(char[] array)
         {
-            try
-            {
-                int abonds = 0, tbonds = 0, gbonds = 0, cbonds = 0, totalbonds = 0;
 
-                char[] array = a.ToCharArray();
-                for (int i = 0; i < array.Length; i++)
-                {
-                    if (array[i] == 'a')
-                    { abonds++; }
-                    else if (array[i] == 't')
-                    { tbonds++; }
-                    else if (array[i] == 'g')
-                    { gbonds++; }
-                    else if (array[i] == 'c')
-                    { cbonds++; }
+            int abonds = 0, tbonds = 0, gbonds = 0, cbonds = 0, totalbonds = 0;
 
-                    totalbonds = (gbonds + cbonds) * 3 + (abonds + tbonds) * 2;
-                }
-                Console.WriteLine("number of pairing with 2-hydrogen bonds  :  {0}", (abonds + tbonds));
-                Console.WriteLine("number of pairing with 3-hydrogen bonds  :  {0}", (gbonds + cbonds));
-                Console.WriteLine("total bonds is  :  {0}", totalbonds);
-            }
-            catch (Exception e)
+
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(e.Message);
+                if (array[i] == 'A')
+                { abonds++; }
+                else if (array[i] == 'T')
+                { tbonds++; }
+                else if (array[i] == 'G')
+                { gbonds++; }
+                else if (array[i] == 'C')
+                { cbonds++; }
+
+                totalbonds = (gbonds + cbonds) * 3 + (abonds + tbonds) * 2;
             }
+            Console.WriteLine("\nOperation 16");
+            Console.WriteLine("\nnumber of pairing with 2-hydrogen bonds  :  {0}", (abonds + tbonds));
+            Console.WriteLine("number of pairing with 3-hydrogen bonds  :  {0}", (gbonds + cbonds));
+            Console.WriteLine("total bonds is  :  {0}", totalbonds);
+
+
         }
         //-------------------------------------------------------------------------------------------------------------
 
@@ -129,6 +152,7 @@ namespace Second_Project_Life_on_Mars
 
 
         //-------------------------------------------------------------------------------------------------------------
+        //Operaton3
         static char[] Operation3()
         {
             Random random = new Random();
@@ -188,6 +212,8 @@ namespace Second_Project_Life_on_Mars
             // son olarak   GenderSelection()  fonskiyonundan gelen cinsiyeti genini diger genlerin uzerine yapistirir 
             dna = MyFunctionForArrayConcatenation(GenderSelection(), dna);
             /////ve mucize gerceklesir/////
+
+
             return dna;
         }
 
@@ -195,7 +221,7 @@ namespace Second_Project_Life_on_Mars
 
 
 
-        //6 cinsiyet ihtimali arasinda birisini secmek icin kullanilmistir
+        //Tum cinsiyetleri ekle
         static char[] GenderSelection()
         {
 
@@ -203,39 +229,80 @@ namespace Second_Project_Life_on_Mars
             char[] gender_array = { };
 
             int gender_gene = random.Next(1, 7);
+
             if (gender_gene == 1)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] female = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
+                gender_array = female;
             }
             else if (gender_gene == 2)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] female = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
+                gender_array = female;
             }
             else if (gender_gene == 3)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] female = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
+                gender_array = female;
             }
             else if (gender_gene == 4)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'C', 'C', 'C', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] female = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
+                gender_array = female;
             }
             else if (gender_gene == 5)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'G', 'G', 'G', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] male = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'C', 'C', 'C', ' ', 'T', 'A', 'G' };
+                gender_array = male;
             }
             else if (gender_gene == 6)
             {
-                char[] f1 = { 'A', 'T', 'G', ' ', 'G', 'G', 'G', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
-                gender_array = f1;
+                char[] male = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'G', 'G', 'G', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 7)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'G', 'G', 'G', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 8)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'C', 'C', 'C', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 9)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'C', 'C', 'C', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 10)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'G', 'G', 'G', ' ', 'A', 'A', 'A', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 11)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'G', 'G', 'G', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 12)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'T', 'T', 'T', ' ', 'C', 'C', 'C', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 13)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'C', 'C', 'C', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
+                gender_array = male;
+            }
+            else if (gender_gene == 14)
+            {
+                char[] male = { 'A', 'T', 'G', ' ', 'G', 'G', 'G', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
+                gender_array = male;
             }
             return gender_array;
         }
-       
+
 
 
 
@@ -328,14 +395,14 @@ namespace Second_Project_Life_on_Mars
         //-------------------------------------------------------------------------------------------------------------
         //DNA daki bosluklari silip islemlerde kolaylik saglamak icin 
         static char[] Space_remover(char[] array_with_spaces)
-        {    
-            char [] spaceless_Array = new char[100];
+        {
+            char[] spaceless_Array = new char[100];
             int count = 0;
-            for (int i = 0; i < array_with_spaces.Length ; i++)
+            for (int i = 0; i < array_with_spaces.Length; i++)
             {
-                if (array_with_spaces[i] != ' ' )
+                if (array_with_spaces[i] != ' ')
                 {
-                    spaceless_Array[count] = array_with_spaces[i];                   
+                    spaceless_Array[count] = array_with_spaces[i];
                     count++;
                 }
             }
@@ -349,7 +416,10 @@ namespace Second_Project_Life_on_Mars
 
 
 
+
+
         //-------------------------------------------------------------------------------------------------------------------------------------------
+        //Not done yet
         //Operation 4
         static void Operation4(char[] arrayToCheck)
         {
@@ -449,10 +519,47 @@ namespace Second_Project_Life_on_Mars
 
 
 
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        //Operation 6
+        static void Operation6(char[] Produce_complement_array)
+        {
+            Console.Write("DNA strand  :  ");
+            Console.WriteLine(Produce_complement_array);
+            Console.Write("Complement  :  ");
+            char[] DNA_sequence = Produce_complement_array;
+
+            char[] operation6result;
+            operation6result = DNA_sequence;
+
+            for (int i = 0; i < operation6result.Length; i++)
+            {
+                char temp = operation6result[i];
+                if (operation6result[i] == 'A')
+                    Console.Write('T');
+                else if (operation6result[i] == 'T')
+                    Console.Write('A');
+                else if (operation6result[i] == 'G')
+                    Console.Write('C');
+                else if (operation6result[i] == 'C')
+                    Console.Write('G');
+                else
+                    Console.Write(" ");
+
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
         //-------------------------------------------------------------------------------------------------------------------------------------------
-        static string[] Operation7(char[] GeneArray)
+        static void Operation7(char[] GeneArray)
         {
 
             string[] Amino_acids = new string[GeneArray.Length / 3];
@@ -584,8 +691,14 @@ namespace Second_Project_Life_on_Mars
                     }
                 }
             }
-
-            return Amino_acids;
+            //bosluk fonksiyoonu ekle
+            Console.Write("DNA strand   :  ");
+            Console.WriteLine(GeneArray);
+            Console.Write("Amino acids  :  ");
+            for (int i = 0; i < Amino_acids.Length; i++)
+            {
+                Console.Write(Amino_acids[i] + " ");
+            }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -599,15 +712,165 @@ namespace Second_Project_Life_on_Mars
 
 
 
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+
+        //        //operation 8
+        //Console.WriteLine("Delete codons (delete n codons, starting from mth codon)\n");
+        //Console.Write("enter number for m : ");
+        //int x = Convert.ToInt32(Console.ReadLine());
+
+        //Console.Write("enter number for n : ");
+        //int y = Convert.ToInt32(Console.ReadLine());
+
+        //char[] operation3result = Space_remover(Operation3());
+        //Console.Write("DNA strand(stage 1)  :  ");
+        //Console.WriteLine(operation3result);
+        //Console.WriteLine("Delete " + y + " codons, starting from " + x + "rd " + "codon.");
+        //char[] operation8result;
+        //operation8result = operation3result;
+        //Console.Write("DNA strand(stage 2)  :  ");
+        //for (int i = 0; i < operation3result.Length; i++)   
+        //{
+        //    if (i < (((x - 1) * 3) ))
+        //    {
+        //        operation8result[i] = operation3result[i];
+        //        Console.Write(operation8result[i]);
+        //    }
+        //    else if (i >= (((x - 1) * 3) ) + (3 * y))
+        //    {
+        //        operation8result[i - ((x - 1) * 3)] = operation3result[i];
+        //        Console.Write(operation8result[i - ((x - 1) * 3)]);
+        //    }
+        //}
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
+
+
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------
+        //operation 9
+
+        //Console.WriteLine("\nInsert codons(insert a codon sequence, starting from mth codon)\n");
+        //Console.Write("enter number for m : ");
+        //int x = Convert.ToInt32(Console.ReadLine());
+
+        //Console.Write("\nenter string for add: ");
+
+        //string k = Convert.ToString(Console.ReadLine());
+        //char[] ekleme = k.ToCharArray();
+
+        //char[] DNA_sequence = Space_remover(Operation3());
+        //Console.WriteLine(DNA_sequence);
+
+        //char[] operation9result = new char[DNA_sequence.Length + ekleme.Length];
+        ////operation9result = DNA_sequence;
+
+        //for (int i = 0; i < (x - 1) * 3; i++)
+        //{
+        //    operation9result[i] = DNA_sequence[i];
+        //    Console.Write(operation9result[i]);
+        //}
+
+        //for (int l = 0; l < ekleme.Length; l++)
+        //{
+        //    operation9result[l + (x - 1) * 3] = ekleme[l];
+        //    Console.Write(operation9result[l + (x - 1) * 3]);
+        //}
+
+        //for (int j = 0; j <= DNA_sequence.Length - ((x - 1) * 3 + ekleme.Length + 1); j++)
+        //{
+        //    operation9result[((x - 1) * 3) + ekleme.Length + j] = DNA_sequence[j + ((x - 1) * 3)];
+        //    Console.Write(operation9result[j + ((x - 1) * 3) + ekleme.Length]);
+        //}
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+
+        //operation 11  
+        //Console.Write("enter number for x starting from: ");
+        //int x = Convert.ToInt32(Console.ReadLine());
+
+        //Console.Write("enter number for y how much: ");
+        //int y = Convert.ToInt32(Console.ReadLine());
+        //char[] operation3result = Space_remover(Operation3());
+        //Console.WriteLine(operation3result);
+        ////ATGAAATTTTAGATGGGTTGAATGGCTGATAAATGA
+        //if (y % 2 == 1)
+        //{
+        //    for (int i = ((x - 1) * 3) ; i < ((x - 1) * 3) + ((y / 2) * 3); i++)
+        //    {
+        //        char temp = operation3result[i];
+        //        operation3result[i] = operation3result[i + (((y - 1) * 3))];
+        //        operation3result[i + (((y - 1) * 3))] = temp;
+        //    }
+        //    Console.WriteLine(operation3result);
+        //}
+
+
+
+        //if (y % 2 == 0)
+        //{
+        //    for (int i = ((x - 1) * 3) ; i <= (((x - 1) * 3) - 1) + ((y / 2) * 3); i++)
+        //    {
+        //        char temp = operation3result[i];
+        //        operation3result[i] = operation3result[i + (((y - 1) * 3))];
+        //        operation3result[i + (((y - 1) * 3))] = temp;
+        //    }
+        //    Console.WriteLine(operation3result);
+        //}
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        //operation 12 
+        //        Console.WriteLine(Operation3());
+
+        //            char[] operation3result = Operation3();
+
+        //        int counter = 0;
+        //            for (int i = 0; i<operation3result.Length - 2; i++)
+        //            {
+        //                if (operation3result[i] == 'A')
+        //                {
+        //                    if (operation3result[i + 1] == 'T')
+        //                    {
+        //                        if (operation3result[i + 2] == 'G')
+        //                        {
+        //                            counter++;
+        //                        }
+        //}
+        //                }
+        //            }
+        //            Console.WriteLine("\nNumber of genes: " + counter);
+        //---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
     }
-
 }
