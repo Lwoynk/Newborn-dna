@@ -869,8 +869,37 @@ namespace ConsoleApp1zcxzxczxc
         //            Console.WriteLine("\nNumber of genes: " + counter);
         //---------------------------------------------------------------------------------------------------------------------------------------------
 
+        //operation 12
+        //        char[] operation3result = Space_remover(Operation3());
+        //        Console.WriteLine(operation3result);
+        //        int count = 0;
+        //           for (int i = 0; i<operation3result.Length; i += 3)
+        //            {
+
+        //                if (operation3result[i] == 'A' && operation3result[i + 1] == 'T' && operation3result[i + 2] == 'G')
+        //                {
+
+        //                    for (int j = 0; j<operation3result.Length; j += 3)
+        //                    {
+        //                        count++;
+
+        //                        if (operation3result[j] == 'T' && (operation3result[j + 1] == 'G' || operation3result[j + 1] == 'A') && (operation3result[j + 2] == 'A' || operation3result[j + 2] == 'G'));
+        //                        break;
+        //                    }
+        //                 }
+        //             }
+        //Console.WriteLine(count);
+
+            //---------------------------------------------------------------------------------------------------------------------------------------------
+ 
 
 
+  
 
-    }
-}
+                    
+           
+            
+           
+                   
+                  
+                
