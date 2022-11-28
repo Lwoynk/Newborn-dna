@@ -979,3 +979,72 @@ namespace ConsoleApp1zcxzxczxc
         //--------------------------------------------------------------------------------------------------------------------------------------------
     }
 }
+
+        //Operation 14
+        //    char[] DNA_sequence = Space_remover(Operation3());
+        //    Console.Write("DNA strand      :  ");
+        //    Console.WriteLine(Operation3());
+
+        //    int count = 0;
+        //    int count14 = -99;
+        //    int count14sonbuyuk = -99;
+        //    int degisken = 0;
+        //    int degisken1 = 0;
+        //    int counttoplam = 0;
+        //    int atgindexson = 0;
+
+        //    for (int i = 0; i < DNA_sequence.Length - 2; i = i + 3)
+        //    {
+
+        //        if (DNA_sequence[i] == 'A' && DNA_sequence[i + 1] == 'T' && DNA_sequence[i + 2] == 'G')
+        //        {
+        //            degisken1 = i / 3 + 1; ;
+        //        }
+
+        //        if ((DNA_sequence[i] == 'T' && DNA_sequence[i + 1] == 'G' && DNA_sequence[i + 2] == 'A') || (DNA_sequence[i] == 'T' && DNA_sequence[i + 1] == 'A' && DNA_sequence[i + 2] == 'G') || (DNA_sequence[i] == 'T' && DNA_sequence[i + 1] == 'A' && DNA_sequence[i + 2] == 'A'))
+        //        {
+        //            counttoplam = counttoplam + count;
+        //            degisken = i / 3 + 1;
+        //            count = (degisken) - counttoplam;
+
+
+        //            if (count < count14 && count14sonbuyuk < count14)
+        //            {
+                        
+        //                    count14sonbuyuk = count14;
+        //                    atgindexson = degisken1;
+                        
+        //            }
+        //            else if (count14 <= count && count14sonbuyuk < count)
+        //            {
+                        
+        //                    count14sonbuyuk = count;
+        //                    atgindexson = degisken1;
+                        
+
+        //            }
+        //            count14 = count;
+        //        }
+
+        //    }
+
+        //    Console.Write("\nLongest gene                :  ");
+        //    for (int i = (atgindexson - 1) * 3; i < (atgindexson - 1) * 3 + (count14sonbuyuk * 3); i++)
+        //    {
+        //        Console.Write(DNA_sequence[i]);
+        //    }
+
+        //    Console.WriteLine("\nNumber of codons in the gene :  " + count14sonbuyuk);
+        //    Console.WriteLine("Position of the gene         :  " + atgindexson);
+
+        //    Console.ReadLine();
+
+        //}
+
+
+
+
+
+
+
+
