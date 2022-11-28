@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,54 +16,14 @@ namespace ConsoleApp1zcxzxczxc
 
 
 
-            char[] DNA_sequence = Space_remover(Operation3());
-            Console.Write("DNA strand      :  ");
-            Console.WriteLine(Operation3());
-
-            Console.WriteLine("\nFind codons (find a codon sequence, starting from mth codon)\n");
-            Console.Write("enter number for m : ");
-            int x = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("\nenter string for search: ");
-
-            string m = Convert.ToString(Console.ReadLine());
-            char[] arama = m.ToCharArray();
 
 
-            int sayac9 = 0;
 
-            bool varmı = false;
-
-            for (int i = (x - 1) * 3; i < DNA_sequence.Length - ((x - 1) * 3) - arama.Length + 1; i = i + 3)
-            {
-                sayac9 = 0;
-                for (int j = 0; j < arama.Length; j++)
-                {
-                    if (DNA_sequence[j + i] == arama[j])
-                    {
-                        sayac9++;
-                    }
-
-                    if (sayac9 == arama.Length)
-                    {
-                        varmı = true;
-                        Console.Write("Codon sequence  :  ");
-                        Console.Write(m);
-                        Console.Write("\nStarting from   :  " + x);
-                        Console.WriteLine("\nResult          :  " + ((i / 3) + 1));
-                        break;
-                    }
-                }
-            }
-
-            if (varmı == false)
-            {
-                Console.WriteLine("yok");
-            }
 
 
 
             Console.ReadLine();
+
         }
 
 
@@ -387,7 +348,7 @@ namespace ConsoleApp1zcxzxczxc
         //DNA daki bosluklari silip islemlerde kolaylik saglamak icin 
         static char[] Space_remover(char[] array_with_spaces)
         {
-            char[] spaceless_Array = new char[100];
+            char[] spaceless_Array = new char[999];
             int count = 0;
             for (int i = 0; i < array_with_spaces.Length; i++)
             {
@@ -789,7 +750,60 @@ namespace ConsoleApp1zcxzxczxc
 
 
 
+
         //---------------------------------------------------------------------------------------------------------------------------------------------
+
+        //Operation 10
+
+        //char[] DNA_sequence = Space_remover(Operation3());
+        //Console.Write("DNA strand      :  ");
+        //Console.WriteLine(DNA_sequence);
+
+
+        //Console.WriteLine("\nFind codons (find a codon sequence, starting from mth codon)\n");
+        //Console.Write("enter number for m : ");
+        //int x = Convert.ToInt32(Console.ReadLine());
+
+        //Console.Write("\nenter string for search: ");
+        //string m = Convert.ToString(Console.ReadLine());
+        //char[] arama = m.ToCharArray();
+
+        //int sayac9 = 0;
+
+        //bool varmı = false;
+
+        //for (int i = (x - 1) * 3; i < DNA_sequence.Length - arama.Length; i++)
+        //{
+
+        //    sayac9 = 0;
+        //    for (int j = 0; j < arama.Length; j++)
+        //    {
+        //        if (DNA_sequence[i + j] == arama[j])
+        //        {
+        //            sayac9++;
+        //        }
+
+        //        if (sayac9 == arama.Length)
+        //        {
+        //            varmı = true;
+        //            Console.Write("Codon sequence  :  ");
+        //            Console.Write(m);
+        //            Console.Write("\nStarting from   :  " + x);
+        //            Console.WriteLine("\nResult          :  " + ((i / 3) + 1));
+        //            break;
+        //        }
+        //    }
+
+        //}
+
+
+        //if (varmı == false)
+        //{
+        //    Console.Write("Codon sequence  :  ");
+        //    Console.Write(m);
+        //    Console.Write("\nStarting from   :  " + x);
+        //    Console.WriteLine("\nResult          :  " + (-1) + "(Not found)");
+        //}
 
 
         //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -977,10 +991,17 @@ namespace ConsoleApp1zcxzxczxc
         //Console.WriteLine("Position of the gene         :  " + atgindexson);
 
         //--------------------------------------------------------------------------------------------------------------------------------------------
-    }
-}
+
+
+
+
+
+
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------
 
         //Operation 14
+
         //    char[] DNA_sequence = Space_remover(Operation3());
         //    Console.Write("DNA strand      :  ");
         //    Console.WriteLine(Operation3());
@@ -1010,17 +1031,17 @@ namespace ConsoleApp1zcxzxczxc
 
         //            if (count < count14 && count14sonbuyuk < count14)
         //            {
-                        
+
         //                    count14sonbuyuk = count14;
         //                    atgindexson = degisken1;
-                        
+
         //            }
         //            else if (count14 <= count && count14sonbuyuk < count)
         //            {
-                        
+
         //                    count14sonbuyuk = count;
         //                    atgindexson = degisken1;
-                        
+
 
         //            }
         //            count14 = count;
@@ -1037,14 +1058,8 @@ namespace ConsoleApp1zcxzxczxc
         //    Console.WriteLine("\nNumber of codons in the gene :  " + count14sonbuyuk);
         //    Console.WriteLine("Position of the gene         :  " + atgindexson);
 
-        //    Console.ReadLine();
-
-        //}
 
 
-
-
-
-
-
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------
+    }
+}
