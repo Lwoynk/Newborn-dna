@@ -20,10 +20,7 @@ namespace ConsoleApp1zcxzxczxc
 
 
 
-
-
             Console.ReadLine();
-
         }
 
 
@@ -346,9 +343,20 @@ namespace ConsoleApp1zcxzxczxc
 
         //-------------------------------------------------------------------------------------------------------------
         //DNA daki bosluklari silip islemlerde kolaylik saglamak icin 
+
+
         static char[] Space_remover(char[] array_with_spaces)
         {
-            char[] spaceless_Array = new char[999];
+            int spaceCounter = 0;
+            for (int i = 0; i < array_with_spaces.Length; i++)
+            {
+                if (array_with_spaces[i] == ' ')
+                {
+                    spaceCounter++;
+                }
+            }
+            char[] spaceless_Array = new char[array_with_spaces.Length - spaceCounter];
+
             int count = 0;
             for (int i = 0; i < array_with_spaces.Length; i++)
             {
@@ -772,7 +780,7 @@ namespace ConsoleApp1zcxzxczxc
 
         //bool varmı = false;
 
-        //for (int i = (x - 1) * 3; i < DNA_sequence.Length - arama.Length; i++)
+        //for (int i = (x - 1) * 3; i < DNA_sequence.Length - arama.Length; i=i+3)
         //{
 
         //    sayac9 = 0;
@@ -1061,5 +1069,90 @@ namespace ConsoleApp1zcxzxczxc
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------
+
+        //Operation 15.Find the most repeated n-nucleotide sequence in a DNA strand(STR - Short Tandem Repeat)
+
+
+
+
+        //char[] sequance = Space_remover(Operation3());
+        //Console.Write("DNA strand      :  ");
+        //Console.WriteLine(sequance);
+
+        //Console.Write("Please enter sequance number: ");
+        //int number = Convert.ToInt32(Console.ReadLine());
+        //char[] array = new char[number];
+        //int newindex = 0;
+        //int temp = 0;
+        //int maxindex = 0;
+        //int sırasayac = 0;
+        //int maxsıra = 0;
+
+
+        //for (int i = 0; i < sequance.Length - number + 1; i++)
+        //{
+
+
+
+        //    for (int j = 0; j < number; j++)
+        //    {
+        //        array[j] = sequance[i + j];
+        //    }
+
+        //    int sayac = 0;
+        //    int sayac2 = 0;
+
+        //    temp = newindex;
+        //    for (int k = 0; k < sequance.Length - number + 1; k++)
+        //    {
+        //        sayac = 0;
+        //        for (int l = 0; l < number; l++)
+        //        {
+        //            if (array[l] == sequance[k + l])
+        //            {
+        //                sayac++;
+        //            }
+        //            if (sayac == array.Length)
+        //            {
+        //                sayac2++;
+        //            }
+        //        }
+        //    }
+        //    newindex = sayac2;
+
+        //    if (newindex > temp && maxindex < newindex)
+        //    {
+        //        maxindex = newindex;
+        //        maxsıra = sırasayac;
+        //    }
+        //    else if (newindex <= temp && maxindex < temp)
+        //    {
+        //        maxindex = temp;
+        //        maxsıra = sırasayac;
+        //    }
+        //    sırasayac++;
+
+        //}
+
+        //Console.WriteLine("");
+        //Console.Write("Enter number of nucletide: ");
+        //Console.WriteLine(number);
+        //Console.Write("Frequency:  ");
+        //Console.WriteLine(maxindex);
+        //Console.Write("Most repeated sequence: ");
+        //for (int m = maxsıra; m < number+maxsıra ; m++)
+        //{
+        //    Console.Write(sequance[m]);
+        //}
+        //--------------------------------------------------------------------------------------------------------------------------------------------
+
     }
 }
