@@ -235,12 +235,7 @@ namespace Tigers
                 }
                 else if (temp1 == 15)
                 {
-                    Console.Write("DNA strand\t\t:  ");
-                    DNA_User1 = Space_remover(DNA_User1);
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
-                    Console.Write("Enter number of nucleotide\t:  ");
-                    int nucleotidNumber = Convert.ToInt32(Console.Read());
-                    Operation15(DNA_User1, nucleotidNumber);
+                    Operation15(DNA_User1);
 
                 }
                 else if (temp1 == 16)
@@ -1122,27 +1117,40 @@ namespace Tigers
 
 
         //   Operation15    //-------------------------------------------------------
-        static void Operation15(char[] DNA_User1, int nucleotidNumber)
+        static void Operation15(char[] DNA_User1)
         {
-            DNA_User1 = Space_remover(DNA_User1);
-            char[] array = new char[nucleotidNumber];
-            int newindex = 0, temp = 0, maxindex = 0, sırasayac = 0, maxsıra = 0;
+            char[] sequance = Space_remover(DNA_User1);
+            Console.Write("DNA strand      :  ");
+            Console.WriteLine(sequance);
 
-            for (int i = 0; i < DNA_User1.Length - nucleotidNumber + 1; i++)
+            Console.Write("Please enter sequance number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+            char[] array = new char[number];
+            int newindex = 0;
+            int temp = 0;
+            int maxindex = 0;
+            int sırasayac = 0;
+            int maxsıra = 0;
+
+
+            for (int i = 0; i < sequance.Length - number + 1; i++)
             {
-                for (int j = 0; j < nucleotidNumber; j++)
+
+                for (int j = 0; j < number; j++)
                 {
-                    array[j] = DNA_User1[i + j];
+                    array[j] = sequance[i + j];
                 }
 
-                int sayac = 0, sayac2 = 0;
+                int sayac = 0;
+                int sayac2 = 0;
 
-                for (int k = 0; k < DNA_User1.Length - nucleotidNumber + 1; k++)
+                temp = newindex;
+                for (int k = 0; k < sequance.Length - number + 1; k++)
                 {
                     sayac = 0;
-                    for (int l = 0; l < nucleotidNumber; l++)
+                    for (int l = 0; l < number; l++)
                     {
-                        if (array[l] == DNA_User1[k + l])
+                        if (array[l] == sequance[k + l])
                         {
                             sayac++;
                         }
@@ -1164,20 +1172,19 @@ namespace Tigers
                     maxindex = temp;
                     maxsıra = sırasayac;
                 }
-                temp = newindex;
-
                 sırasayac++;
+
             }
 
             Console.WriteLine("");
             Console.Write("Enter number of nucletide: ");
-            Console.WriteLine(nucleotidNumber);
+            Console.WriteLine(number);
             Console.Write("Frequency:  ");
             Console.WriteLine(maxindex);
             Console.Write("Most repeated sequence: ");
-            for (int m = maxsıra; m < nucleotidNumber + maxsıra; m++)
+            for (int m = maxsıra; m < number + maxsıra; m++)
             {
-                Console.Write(DNA_User1[m]);
+                Console.Write(sequance[m]);
             }
         }
 
