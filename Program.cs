@@ -63,22 +63,17 @@ namespace Tigers
                 if (LoadOperationNumbere_user == 1)
                 {
                     //Add file path
-                    static char[] Operation1(string filepath)
-                    {
-
-                        char[] DNA_sequence_in_CharArray;
-                        string dna_from_file = "";
+                    char[] DNA_sequence_in_CharArray;
+                    string dna_from_file = "";
 
 
-                        StreamReader f = File.OpenText("operation1.txt");
-                        dna_from_file = f.ReadLine();
-                        Console.WriteLine(dna_from_file);
-                        f.Close();
+                    StreamReader f = File.OpenText("dna1.txt");
+                    dna_from_file = f.ReadLine();
+                    Console.WriteLine(dna_from_file);
+                    f.Close();
 
-                        DNA_sequence_in_CharArray = dna_from_file.ToCharArray();
+                    DNA_User1 = dna_from_file.ToCharArray();
 
-                        return DNA_sequence_in_CharArray;
-                    }
                 }
                 else if (LoadOperationNumbere_user == 2)
                 {
@@ -249,60 +244,6 @@ namespace Tigers
 
                 temp1 = Convert.ToInt32(Console.ReadLine());
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
