@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Buffers.Text;
 using System.IO;
 using System.Threading;
 
@@ -10,7 +9,7 @@ namespace Tigers
         static void Main(string[] args)
         {
             int LoadOperationNumbere_user = 0;
-            char[] DNA_User1 = { };                                                                 //We are assigning a char that we will use constantly so that it changes according to the applied operations.
+            char[] DNA_Strand1 = { };  //We are assigning a char that we will use constantly so that it changes according to the applied operations.
             char[] DNA_User_Original = { };
 
 
@@ -64,7 +63,6 @@ namespace Tigers
                 if (LoadOperationNumbere_user == 1)
                 {
                     //Add file path
-                    char[] DNA_sequence_in_CharArray;
                     string dna_from_file = "";
 
 
@@ -73,14 +71,14 @@ namespace Tigers
                     Console.WriteLine(dna_from_file);
                     f.Close();
 
-                    DNA_User1 = dna_from_file.ToCharArray();
+                    DNA_Strand1 = dna_from_file.ToCharArray();
 
                 }
                 else if (LoadOperationNumbere_user == 2)                       //Here, the user enters a DNA according to her/his own will.
                 {
                     Console.WriteLine("Please enter the DNA sequence:");
-                    DNA_User1 = Space_remover(Console.ReadLine().ToCharArray());
-                    DNA_User_Original = DNA_User1;
+                    DNA_Strand1 = Space_remover(Console.ReadLine().ToCharArray());
+                    DNA_User_Original = DNA_Strand1;
                 }
                 else if (LoadOperationNumbere_user == 3)                    //In the last option, we give a ready-made DNA to the user thanks to the operation we wrote.
                 {
@@ -95,16 +93,16 @@ namespace Tigers
                         Console.WriteLine("Unexpected Value.");
                     }
 
-                     
+
                     if (genderSelection_forOperation3 == 'F' || genderSelection_forOperation3 == 'f')      //It makes the user choose the gender of the BLOB as it will be needed in the 17th operation.
                     {
-                        DNA_User1 = Space_remover(Operation3('F'));
-                        DNA_User_Original = DNA_User1;
+                        DNA_Strand1 = Space_remover(Operation3('F'));
+                        DNA_User_Original = DNA_Strand1;
                     }
                     else if (genderSelection_forOperation3 == 'M' || genderSelection_forOperation3 == 'm') //It makes the user choose the gender of the BLOB as it will be needed in the 17th operation.
                     {
-                        DNA_User1 = Space_remover(Operation3('M'));
-                        DNA_User_Original = DNA_User1;
+                        DNA_Strand1 = Space_remover(Operation3('M'));
+                        DNA_User_Original = DNA_Strand1;
                     }
                     else
                     {
@@ -114,9 +112,9 @@ namespace Tigers
             }
 
 
-            Console.Clear();                                                                                        //Here, we print the rest of our operations in the form of a menu and let the user choose it.
+            Console.Clear();                 //Here, we print the rest of our operations in the form of a menu and let the user choose it.
             Console.Write("DNA strand 1: ");
-            Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+            Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
 
 
             Console.WriteLine("\nNow there is List of Operations you can do with your DNA:\n");
@@ -136,45 +134,46 @@ namespace Tigers
             Console.WriteLine("***\t17). Simulate BLOB generations using DNA strand 1 and 2 (DNA strand 3 is for the newborn)\n");
             Console.WriteLine("***\t18). Exit the menu");
 
-            int temp1 = Convert.ToInt32(Console.ReadLine());                                                    //We assign the value that the user will enter for the operation to the variable.
+            int temp1 = Convert.ToInt32(Console.ReadLine());  //We assign the value that the user will enter for the operation to the variable.
 
-            while (temp1 != 18)                                                                                 //If the user enters 18, the application closes.
+            while (temp1 != 18)         //If the user enters 18, the application closes.
             {
 
-                if (temp1 == 4)                                                                                 //We do printing and input operations in all operations here. We customize the printing process according to the operation.
+                if (temp1 == 4)          //We do printing and input operations in all operations here. We customize the printing process according to the operation.
                 {
-                    Console.WriteLine(Operation4(DNA_User1));
+                    Console.WriteLine(Operation4(DNA_Strand1));
 
                 }
                 else if (temp1 == 5)
                 {
-                    Console.WriteLine(Operation5(DNA_User1));
+                    Console.WriteLine(Operation5(DNA_Strand1));
                 }
                 else if (temp1 == 6)
                 {
                     Console.Write("DNA strand  :  ");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
-                    DNA_User1 = Operation6(DNA_User1);
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
+                    DNA_Strand1 = Operation6(DNA_Strand1);
                     Console.Write("Complement  :  ");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
                 }
                 else if (temp1 == 7)
                 {
                     Console.WriteLine("Working on it.....");
                 }
-                else if (temp1 == 8)                                                                               //For example, we take input values ​​in the 8th operation and use this while creating the algorithm of the operation. 
-                {                                                                                                  //Then we perform the output operations according to the values ​​obtained.
+                //For example, we take input values ​​in the 8th operation and use this while creating the algorithm of the operation. 
+                else if (temp1 == 8)
+                {                          //Then we perform the output operations according to the values ​​obtained.                                                                        
                     Console.Write("How many codons do you want to delete :   ");
                     int codonCount = Convert.ToInt32(Console.ReadLine());
                     Console.Write("And from which codon do want to start deleting :   ");
                     int startingFrom = Convert.ToInt32(Console.ReadLine());
 
                     Console.Write("DNA strand (stage 1)  :  ");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
                     Console.WriteLine("Delete {0} codons, starting from {1} th codon.", codonCount, startingFrom);
                     Console.Write("DNA strand (stage 2)  :  ");
-                    DNA_User1 = Operation8(DNA_User1, codonCount, startingFrom);
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    DNA_Strand1 = Operation8(DNA_Strand1, codonCount, startingFrom);
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
 
                 }
                 else if (temp1 == 9)
@@ -185,14 +184,14 @@ namespace Tigers
                     int startingFrom = Convert.ToInt32(Console.ReadLine());
 
                     Console.Write("DNA strand (stage 1)  :\t");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
                     Console.Write("Codon sequence        :\t");
                     Console.WriteLine(AddSpaceBetweenCodons(codonSequence.ToCharArray()));
                     Console.Write("Starting from         :\t");
                     Console.WriteLine(startingFrom);
                     Console.Write("DNA strand (stage 2)  :\t");
-                    DNA_User1 = Operation9(DNA_User1, codonSequence, startingFrom);
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    DNA_Strand1 = Operation9(DNA_Strand1, codonSequence, startingFrom);
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
 
                 }
                 else if (temp1 == 10)
@@ -201,7 +200,7 @@ namespace Tigers
                     string Codon_string_Operation10 = Console.ReadLine();
                     Console.Write("From which codon you want to start searching :  ");
                     int codonIndex = Convert.ToInt32(Console.ReadLine());
-                    Operation10(DNA_User1, Codon_string_Operation10, codonIndex);
+                    Operation10(DNA_Strand1, Codon_string_Operation10, codonIndex);
                 }
                 else if (temp1 == 11)
                 {
@@ -210,40 +209,49 @@ namespace Tigers
                     Console.Write("From which codon you want to start reversing :  ");
                     int startingFrom = Convert.ToInt32(Console.ReadLine());
                     Console.Write("DNA strand (stage 1) :  ");
-                    Console.WriteLine(DNA_User1);
-                    DNA_User1 = Operation11(DNA_User1, NumberOfCodons, startingFrom);
+                    Console.WriteLine(DNA_Strand1);
+                    DNA_Strand1 = Operation11(DNA_Strand1, NumberOfCodons, startingFrom);
                     Console.WriteLine("Reverse {0} codons, starting from {1}th codon. ", NumberOfCodons, startingFrom);
                     Console.Write("DNA strand (stage 2) :  ");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
 
                 }
                 else if (temp1 == 12)
                 {
-                    Operation12(DNA_User1);
+                    Operation12(DNA_Strand1);
                 }
                 else if (temp1 == 13)
                 {
-                    Operation13(DNA_User1);
+                    Operation13(DNA_Strand1);
                 }
                 else if (temp1 == 14)
                 {
-                    Operation14(DNA_User1);
+                    Operation14(DNA_Strand1);
                 }
                 else if (temp1 == 15)
                 {
-                    Operation15(DNA_User1);
+                    Operation15(DNA_Strand1);
 
                 }
                 else if (temp1 == 16)
                 {
                     Console.WriteLine("DNA strand  : ");
-                    Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
-                    operation16(DNA_User1);
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
+                    operation16(DNA_Strand1);
+                }
+                else if(temp1 == 17)
+                {
+                    Operation17(DNA_Strand1);
                 }
 
-
-
-                temp1 = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    temp1 = Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+                    temp1 = 0;
+                }
             }
 
 
@@ -438,8 +446,8 @@ namespace Tigers
 
 
 
-        static char[] WrongCodonsInWrongPlaces(char[] array)                        //We wrote a function to avoid the problems we may encounter while generating random codons. 
-        {                                                                           //For example, ending or starting codons can be created in an undesirable place.
+        static char[] WrongCodonsInWrongPlaces(char[] array)              //We wrote a function to avoid the problems we may encounter while generating random codons. 
+        {                                                                //For example, ending or starting codons can be created in an undesirable place.
             Random random = new Random();
             char[] Nucleotides = { 'A', 'T', 'G', 'C' };
 
@@ -484,7 +492,7 @@ namespace Tigers
 
         //   Operation4     //-------------------------------------------------------
 
-        static string Operation4(char[] DNA_sequence)                           //We check whether our DNA is suitable or not, according to the specified rules. If there is a problem during the control, we print the error on the screen according to the situation encountered.
+        static string Operation4(char[] DNA_sequence)                //We check whether our DNA is suitable or not, according to the specified rules. If there is a problem during the control, we print the error on the screen according to the situation encountered.
         {
             string message = "";
             int[] indexnumberofATG = arrayOfIndexNumbersOfATGs(DNA_sequence);
@@ -501,11 +509,11 @@ namespace Tigers
                             {
                                 for (int j = indexnumberofATG[i] + 3; j < indexNumber_of_stopCodons[i]; j += 3)
                                 {
-                                    if (DNA_sequence[j] == 'A' && DNA_sequence[j + 1] == 'T' && DNA_sequence[j + 2] == 'G') 
+                                    if (DNA_sequence[j] == 'A' && DNA_sequence[j + 1] == 'T' && DNA_sequence[j + 2] == 'G')
                                     {
                                         message = "DNA structure error.";
                                     }
-                                    else if (DNA_sequence[j] == 'T' && DNA_sequence[j + 1] == 'A' && (DNA_sequence[j + 2] == 'G' || DNA_sequence[j + 2] == 'A')) 
+                                    else if (DNA_sequence[j] == 'T' && DNA_sequence[j + 1] == 'A' && (DNA_sequence[j + 2] == 'G' || DNA_sequence[j + 2] == 'A'))
                                     {
                                         message = "DNA structure error.";
                                     }
@@ -566,7 +574,7 @@ namespace Tigers
 
         //   Operation5     //-------------------------------------------------------
 
-        static string Operation5(char[] DNA_sequence)                                                   //We check our DNA to see if it is a BLOB or not by adhering to certain rules. If there is a problem, we print the problem with its type. For example Gender error,number of genes error.
+        static string Operation5(char[] DNA_sequence)                       //We check our DNA to see if it is a BLOB or not by adhering to certain rules. If there is a problem, we print the problem with its type. For example Gender error,number of genes error.
         {
             int[] indexnumberofATG = arrayOfIndexNumbersOfATGs(DNA_sequence);
             int[] indexNumber_of_stopCodons = arrayOfIndexNumbersOfStopCodons(DNA_sequence);
@@ -590,7 +598,7 @@ namespace Tigers
                         }
                         else
                         {
-                            message_of_gender = "Gender error.";                                         //We're checking to see if there are codons related to gender.
+                            message_of_gender = "Gender error.";                //We're checking to see if there are codons related to gender.
                         }
 
                     }
@@ -680,7 +688,7 @@ namespace Tigers
 
 
         //   Operation6     //-------------------------------------------------------
-        static char[] Operation6(char[] DNA_sequence)                   //We print the complement of the code.
+        static char[] Operation6(char[] DNA_sequence)      //We print the complement of the code.
         {
             char[] operation6result = new char[DNA_sequence.Length];
 
@@ -705,7 +713,148 @@ namespace Tigers
 
 
         //   Operation7     //-------------------------------------------------------
+        static void Operation7(char[] GeneArray)
+        {
+            //I know that we supposed to do this operation using array but I think this operation is much better with if condition
+            string[] Amino_acids = new string[GeneArray.Length / 3];
 
+            for (int i = 0; i < GeneArray.Length; i += 3)
+            {
+                if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Ala";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'G')
+                {
+                    Amino_acids[i / 3] = "Arg";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'T')
+                {
+                    Amino_acids[i / 3] = "Leu";
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'G')
+                {
+                    Amino_acids[i / 3] = "Gly";
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Pro";
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Ser";
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'C')
+                {
+                    Amino_acids[i / 3] = "Thr";
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'T')
+                {
+                    Amino_acids[i / 3] = "Val";
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Asn";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Lys";
+                    }
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'T')
+                {
+                    if (GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Met";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Ile";
+                    }
+                }
+                else if (GeneArray[i] == 'C' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'A' || GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Gln";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "His";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'T')
+                {
+                    if (GeneArray[i + 2] == 'C' || GeneArray[i + 2] == 'T')
+                    {
+                        Amino_acids[i / 3] = "Phe";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Leu";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'G')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Cys";
+                    }
+                    else if (GeneArray[i + 2] == 'G')
+                    {
+                        Amino_acids[i / 3] = "Trp";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "END";
+                    }
+                }
+                else if (GeneArray[i] == 'G' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Asp";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Glu";
+                    }
+                }
+                else if (GeneArray[i] == 'A' && GeneArray[i + 1] == 'G')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Ser";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "Arg";
+                    }
+                }
+                else if (GeneArray[i] == 'T' && GeneArray[i + 1] == 'A')
+                {
+                    if (GeneArray[i + 2] == 'T' || GeneArray[i + 2] == 'C')
+                    {
+                        Amino_acids[i / 3] = "Tyr";
+                    }
+                    else
+                    {
+                        Amino_acids[i / 3] = "END";
+                    }
+                }
+            }
+
+            Console.Write("DNA strand   :  ");
+            Console.WriteLine(AddSpaceBetweenCodons(GeneArray));
+            Console.Write("Amino acids  :  ");
+            for (int i = 0; i < Amino_acids.Length; i++)
+            {
+                Console.Write(Amino_acids[i] + " ");
+            }
+
+        }
 
 
 
@@ -727,7 +876,7 @@ namespace Tigers
         {
             DNA_sequence = Space_remover(DNA_sequence);
 
-            char[] operation8result = new char[DNA_sequence.Length - (codonCount * 3)];         
+            char[] operation8result = new char[DNA_sequence.Length - (codonCount * 3)];
 
             int temp = (startingFrom - 1) * 3;// 0          
 
@@ -861,9 +1010,9 @@ namespace Tigers
             DNA_sequence = Space_remover(DNA_sequence);
 
             if (NumberOfCodons % 2 == 1)
-            {   
+            {
                 for (int i = ((startingFrom - 1) * 3); i < ((startingFrom - 1) * 3) + ((NumberOfCodons / 2) * 3); i++)              //We found the appropriate formulas and made an algorithm to be able to reverse it.
-                {                                                                                                                   
+                {
                     char temp = DNA_sequence[i];
                     DNA_sequence[i] = DNA_sequence[i + (((NumberOfCodons - 1) * 3))];
                     DNA_sequence[i + (((NumberOfCodons - 1) * 3))] = temp;
@@ -1176,9 +1325,191 @@ namespace Tigers
 
 
 
+        //   Operation16    //-------------------------------------------------------
+        static void Operation17(char[] DNA_Strand1)
+        {
+            //Not Done
+            int generationCounter = 0;
+            bool flag = true;
+
+            DNA_Strand1 = Space_remover(DNA_Strand1);
+            int[] ATGCodons_IndexNumbers_Strand1;
+            int[] StopCodons_IndexNumber_Strand1;
+
+            char[] DNA_Strand2 = { };
+            int[] ATGCodons_IndexNumbers_Strand2;
+            int[] StopCodons_IndexNumber_Strand2;
+
+            char[] DNA_Strand3 = new char[500];
+
+            do
+            {
+                //we stored the index number of start and stop codons in two int arrays
+                DNA_Strand1 = Space_remover(DNA_Strand1);
+                ATGCodons_IndexNumbers_Strand1 = arrayOfIndexNumbersOfATGs(DNA_Strand1);
+                StopCodons_IndexNumber_Strand1 = arrayOfIndexNumbersOfStopCodons(DNA_Strand1);
+
+                if (Operation5(DNA_Strand1) == "BLOB is ok")//checks if the DNA is BLOB or not
+                {
+                    DNA_Strand2 = BlobFindMatch(DNA_Strand1);//generates a random DNA sequence for DNA strand2
+                    DNA_Strand2 = Space_remover(DNA_Strand2);
+                    ATGCodons_IndexNumbers_Strand2 = arrayOfIndexNumbersOfATGs(DNA_Strand2);
+                    StopCodons_IndexNumber_Strand2 = arrayOfIndexNumbersOfStopCodons(DNA_Strand2);
+
+                    //New born gender
+                    for (int i = 0; i < 12; i++)
+                    {
+                        if (6 <= i && i <= 8)
+                        {
+                            DNA_Strand3[i] = DNA_Strand2[i];
+                        }
+                        else
+                        {
+                            DNA_Strand3[i] = DNA_Strand1[i];
+                        }
+                    }
 
 
+                    int ATGNumber = ATGCodons_IndexNumbers_Strand1.Length;
+                    
+                    //finds the Gene number of the DNA with the least Genes
+                    if (ATGNumber > ATGCodons_IndexNumbers_Strand2.Length)
+                    {
+                        ATGNumber = ATGCodons_IndexNumbers_Strand2.Length;
+                    }
 
+
+                    int count = 12;
+                    int count2 = 0;
+
+                    for (int i = 1; i < ATGNumber; i++)
+                    {
+                        //if the gene number is odd ,initializes the gene from first DNA strand to Newborn
+                        if (i % 2 == 1)
+                        {
+                            for (int j = ATGCodons_IndexNumbers_Strand1[i]; j < StopCodons_IndexNumber_Strand1[i] + 3; j++)
+                            {
+                                DNA_Strand3[count] = DNA_Strand1[j];
+                                count++;
+                            }
+                        }
+                        //if the gene number is odd ,initializes the gene from second DNA strand to Newborn
+                        else
+                        {
+                            for (int j = ATGCodons_IndexNumbers_Strand2[i]; j < StopCodons_IndexNumber_Strand2[i] + 3; j++)
+                            {
+                                DNA_Strand3[count] = DNA_Strand2[j];
+                                count++;
+                            }
+                        }
+                        count2++;
+                    }
+
+
+                    //initializes the remaining part of longer DNA
+                    if (ATGCodons_IndexNumbers_Strand1.Length > ATGCodons_IndexNumbers_Strand2.Length)
+                    {
+                        for (int i = ATGCodons_IndexNumbers_Strand1[count2 - 1]; i < DNA_Strand1.Length; i++)
+                        {
+                            DNA_Strand3[count] = DNA_Strand1[i];
+                            count++;
+                        }
+                    }
+                    else if(ATGCodons_IndexNumbers_Strand1.Length < ATGCodons_IndexNumbers_Strand2.Length)
+                    {
+                        for (int i = ATGCodons_IndexNumbers_Strand2[count2 - 1]; i < DNA_Strand2.Length; i++)
+                        {
+                            DNA_Strand3[count] = DNA_Strand2[i];
+                            count++;
+                        }
+                    }
+
+                    //Counts the GC_Bond_count to check the health of newborn
+                    int GC_Bonds_count = 0;
+                    for (int i = 0; i < DNA_Strand3.Length; i += 3)
+                    {
+                        if ((DNA_Strand3[i] == 'C' || DNA_Strand3[i] == 'G') && (DNA_Strand3[i + 1] == 'C' || DNA_Strand3[i + 1] == 'G') && (DNA_Strand3[i + 2] == 'C' || DNA_Strand3[i + 2] == 'G'))
+                        {
+                            GC_Bonds_count++;
+                        }
+                    }
+
+                    //cause we cannot specify the size of DNA three after generating newborn,we had to count only the nucleotids
+
+                    int DNAStrand3Notspacecount = 0;
+                    for (int i = 0; i < DNA_Strand3.Length; i++)
+                    {
+                        if (DNA_Strand3[i] == 'A' || DNA_Strand3[i] == 'T' || DNA_Strand3[i] == 'G' || DNA_Strand3[i] == 'C')
+                        {
+                            DNAStrand3Notspacecount++;
+                        }
+                    }
+
+
+                    Console.WriteLine("Generation {0}:", generationCounter + 1);
+                    Console.Write("BLOB1 : ");
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand1));
+                    Console.Write("BLOB2 : ");
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand2));
+                    Console.Write("BLOB3 : ");
+                    Console.WriteLine(AddSpaceBetweenCodons(DNA_Strand3));
+
+
+                    //calculates the health of newborn
+                    int codonRatio = (GC_Bonds_count / (DNAStrand3Notspacecount / 3))*100;
+                    //if the result is larger than 10 the newborn dies
+                    if (codonRatio > 10)
+                    {
+                        flag = false;
+                        Console.WriteLine("Newborn dies. Generations are over.");
+                    }
+
+                    DNA_Strand1 = new char[ DNAStrand3Notspacecount ];
+                    //initializes the DNA_strand3 values to the DNA_strand1 for the next operation but only the ones which is not empty
+                    for (int i = 0; i < DNA_Strand1.Length; i++)
+                    {
+                        if (DNA_Strand3[i] == 'A' || DNA_Strand3[i] == 'T' || DNA_Strand3[i] == 'G' || DNA_Strand3[i] == 'C')
+                        {
+                            DNA_Strand1[i] = DNA_Strand3[i];
+                        }
+                    }
+                    generationCounter++;
+                }
+                else
+                {
+                    Console.WriteLine("For this operation you must have a BLOB DNA in your DNA strand");
+                    break;
+                }
+
+            } while (generationCounter < 10 && flag == true);
+
+        }
+
+
+        //this function is to generate gender of the DNA strand 2 
+        static char[] BlobFindMatch(char[] FirstBlob)
+        {
+            FirstBlob = Space_remover(FirstBlob);
+            char[] DNA_Random2 = { };
+
+            if ((FirstBlob[3] == 'T' || FirstBlob[3] == 'A') && (FirstBlob[6] == 'T' || FirstBlob[6] == 'A'))
+            {
+                DNA_Random2 = Space_remover(Operation3('M'));
+            }
+            else if ((FirstBlob[3] == 'T' || FirstBlob[3] == 'A') && (FirstBlob[6] == 'G' || FirstBlob[6] == 'C'))
+            {
+                DNA_Random2 = Space_remover(Operation3('F'));
+            }
+            else if ((FirstBlob[3] == 'G' || FirstBlob[3] == 'C') && (FirstBlob[6] == 'T' || FirstBlob[6] == 'A'))
+            {
+                DNA_Random2 = Space_remover(Operation3('F'));
+            }
+            else
+            {
+                Console.WriteLine("This DNA is suitable for Operation 17");
+            }
+            return DNA_Random2;
+        }
 
 
 
