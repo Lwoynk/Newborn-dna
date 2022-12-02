@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.IO;
 using System.Threading;
 
@@ -9,12 +10,12 @@ namespace Tigers
         static void Main(string[] args)
         {
             int LoadOperationNumbere_user = 0;
-            char[] DNA_User1 = { };
+            char[] DNA_User1 = { };                                                                 //We are assigning a char that we will use constantly so that it changes according to the applied operations.
             char[] DNA_User_Original = { };
 
 
 
-            //A small starting show
+            //A small starting show. We added such a detail to make it look better.
             Random random = new Random();
             int timing = 300;
 
@@ -36,7 +37,7 @@ namespace Tigers
 
 
 
-            Console.WriteLine("Select an option to load a DNA sequence");
+            Console.WriteLine("Select an option to load a DNA sequence");                           //We make the user choose one of the first 3 options to generate DNA.
             Console.WriteLine("     Operation 1. Load a DNA sequence from a file.");
             Console.WriteLine("     Operation 2. Load a DNA sequence from a string.");
             Console.WriteLine("     Operation 3. Generate random DNA sequence of a BLOB.");
@@ -58,7 +59,7 @@ namespace Tigers
 
 
 
-            if (1 <= LoadOperationNumbere_user && LoadOperationNumbere_user <= 3)
+            if (1 <= LoadOperationNumbere_user && LoadOperationNumbere_user <= 3) //The user is running the txt file loaded here.
             {
                 if (LoadOperationNumbere_user == 1)
                 {
@@ -75,13 +76,13 @@ namespace Tigers
                     DNA_User1 = dna_from_file.ToCharArray();
 
                 }
-                else if (LoadOperationNumbere_user == 2)
+                else if (LoadOperationNumbere_user == 2)                       //Here, the user enters a DNA according to her/his own will.
                 {
                     Console.WriteLine("Please enter the DNA sequence:");
                     DNA_User1 = Space_remover(Console.ReadLine().ToCharArray());
                     DNA_User_Original = DNA_User1;
                 }
-                else if (LoadOperationNumbere_user == 3)
+                else if (LoadOperationNumbere_user == 3)                    //In the last option, we give a ready-made DNA to the user thanks to the operation we wrote.
                 {
                     char genderSelection_forOperation3 = ' ';
                     try
@@ -94,13 +95,13 @@ namespace Tigers
                         Console.WriteLine("Unexpected Value.");
                     }
 
-
-                    if (genderSelection_forOperation3 == 'F' || genderSelection_forOperation3 == 'f')
+                     
+                    if (genderSelection_forOperation3 == 'F' || genderSelection_forOperation3 == 'f')      //It makes the user choose the gender of the BLOB as it will be needed in the 17th operation.
                     {
                         DNA_User1 = Space_remover(Operation3('F'));
                         DNA_User_Original = DNA_User1;
                     }
-                    else if (genderSelection_forOperation3 == 'M' || genderSelection_forOperation3 == 'm')
+                    else if (genderSelection_forOperation3 == 'M' || genderSelection_forOperation3 == 'm') //It makes the user choose the gender of the BLOB as it will be needed in the 17th operation.
                     {
                         DNA_User1 = Space_remover(Operation3('M'));
                         DNA_User_Original = DNA_User1;
@@ -113,7 +114,7 @@ namespace Tigers
             }
 
 
-            Console.Clear();
+            Console.Clear();                                                                                        //Here, we print the rest of our operations in the form of a menu and let the user choose it.
             Console.Write("DNA strand 1: ");
             Console.WriteLine(AddSpaceBetweenCodons(DNA_User1));
 
@@ -135,12 +136,12 @@ namespace Tigers
             Console.WriteLine("***\t17). Simulate BLOB generations using DNA strand 1 and 2 (DNA strand 3 is for the newborn)\n");
             Console.WriteLine("***\t18). Exit the menu");
 
-            int temp1 = Convert.ToInt32(Console.ReadLine());
+            int temp1 = Convert.ToInt32(Console.ReadLine());                                                    //We assign the value that the user will enter for the operation to the variable.
 
-            while (temp1 != 18)
+            while (temp1 != 18)                                                                                 //If the user enters 18, the application closes.
             {
 
-                if (temp1 == 4)
+                if (temp1 == 4)                                                                                 //We do printing and input operations in all operations here. We customize the printing process according to the operation.
                 {
                     Console.WriteLine(Operation4(DNA_User1));
 
@@ -161,8 +162,8 @@ namespace Tigers
                 {
                     Console.WriteLine("Working on it.....");
                 }
-                else if (temp1 == 8)
-                {
+                else if (temp1 == 8)                                                                               //For example, we take input values ​​in the 8th operation and use this while creating the algorithm of the operation. 
+                {                                                                                                  //Then we perform the output operations according to the values ​​obtained.
                     Console.Write("How many codons do you want to delete :   ");
                     int codonCount = Convert.ToInt32(Console.ReadLine());
                     Console.Write("And from which codon do want to start deleting :   ");
@@ -262,7 +263,7 @@ namespace Tigers
 
 
         //   Operation1     //-------------------------------------------------------
-        static char[] Operation1(string filepath)
+        static char[] Operation1(string filepath)                                               //If the user enters 1, this function works. In this function, we use the txt file in the file as dna.
         {
 
             char[] DNA_sequence_in_CharArray;
@@ -288,7 +289,7 @@ namespace Tigers
 
 
         //   Operation3     //-------------------------------------------------------
-        static char[] Operation3(char gender)
+        static char[] Operation3(char gender)                                           //In this function we create a gendered BLOB for the user.
         {
             Random random = new Random();
             char[] Nucleotides = { 'A', 'C', 'G', 'T' };
@@ -296,7 +297,7 @@ namespace Tigers
             char[] dna = { };
 
 
-            for (int j = 0; j < random.Next(1, 7); j++)
+            for (int j = 0; j < random.Next(1, 7); j++)                                 //We write certain for loops to conform to the rules.
             {
 
                 int Nucleotidnumber = random.Next(5, 29);
@@ -319,7 +320,7 @@ namespace Tigers
                     }
                 }
 
-                codons[0] = 'A';
+                codons[0] = 'A';                                                      //We print the start codon.
                 codons[1] = 'T';
                 codons[2] = 'G';
                 codons[codons.Length - 3] = 'T';
@@ -334,17 +335,17 @@ namespace Tigers
                     codons[codons.Length - 1] = stop[random.Next(0, 2)];
                 }
 
-                dna = MyFunctionForArrayConcatenation(dna, codons);
+                dna = MyFunctionForArrayConcatenation(dna, codons);                //We call the function we wrote to combine the first part of DNA and the part after gender.
             }
 
-            dna = MyFunctionForArrayConcatenation(GenderSelection(gender), dna);
+            dna = MyFunctionForArrayConcatenation(GenderSelection(gender), dna);  //We call the function we wrote for gender.
             return dna;
         }
 
 
 
 
-        static char[] GenderSelection(char gender)
+        static char[] GenderSelection(char gender)                                  //Based on the user's request, we create a BLOB with an appropriate gender.                                         
         {
 
             Random random = new Random();
@@ -361,7 +362,7 @@ namespace Tigers
             }
 
 
-            if (gender_gene == 1)
+            if (gender_gene == 1)                                                  //We write down all the possibilities that can happen in terms of gender and choose one at random.
             {
                 char[] female = { 'A', 'T', 'G', ' ', 'A', 'A', 'A', ' ', 'T', 'T', 'T', ' ', 'T', 'A', 'G' };
                 gender_array = female;
@@ -437,8 +438,8 @@ namespace Tigers
 
 
 
-        static char[] WrongCodonsInWrongPlaces(char[] array)
-        {
+        static char[] WrongCodonsInWrongPlaces(char[] array)                        //We wrote a function to avoid the problems we may encounter while generating random codons. 
+        {                                                                           //For example, ending or starting codons can be created in an undesirable place.
             Random random = new Random();
             char[] Nucleotides = { 'A', 'T', 'G', 'C' };
 
@@ -483,7 +484,7 @@ namespace Tigers
 
         //   Operation4     //-------------------------------------------------------
 
-        static string Operation4(char[] DNA_sequence)
+        static string Operation4(char[] DNA_sequence)                           //We check whether our DNA is suitable or not, according to the specified rules. If there is a problem during the control, we print the error on the screen according to the situation encountered.
         {
             string message = "";
             int[] indexnumberofATG = arrayOfIndexNumbersOfATGs(DNA_sequence);
@@ -500,11 +501,11 @@ namespace Tigers
                             {
                                 for (int j = indexnumberofATG[i] + 3; j < indexNumber_of_stopCodons[i]; j += 3)
                                 {
-                                    if (DNA_sequence[j] == 'A' && DNA_sequence[j + 1] == 'T' && DNA_sequence[j + 2] == 'G')
+                                    if (DNA_sequence[j] == 'A' && DNA_sequence[j + 1] == 'T' && DNA_sequence[j + 2] == 'G') 
                                     {
                                         message = "DNA structure error.";
                                     }
-                                    else if (DNA_sequence[j] == 'T' && DNA_sequence[j + 1] == 'A' && (DNA_sequence[j + 2] == 'G' || DNA_sequence[j + 2] == 'A'))
+                                    else if (DNA_sequence[j] == 'T' && DNA_sequence[j + 1] == 'A' && (DNA_sequence[j + 2] == 'G' || DNA_sequence[j + 2] == 'A')) 
                                     {
                                         message = "DNA structure error.";
                                     }
@@ -514,7 +515,7 @@ namespace Tigers
                                     }
                                     else
                                     {
-                                        message = "DNA structure is OK.";
+                                        message = "DNA structure is OK.";       //If there is no problem in DNA, we also indicate it.
                                     }
                                 }
 
@@ -565,7 +566,7 @@ namespace Tigers
 
         //   Operation5     //-------------------------------------------------------
 
-        static string Operation5(char[] DNA_sequence)
+        static string Operation5(char[] DNA_sequence)                                                   //We check our DNA to see if it is a BLOB or not by adhering to certain rules. If there is a problem, we print the problem with its type. For example Gender error,number of genes error.
         {
             int[] indexnumberofATG = arrayOfIndexNumbersOfATGs(DNA_sequence);
             int[] indexNumber_of_stopCodons = arrayOfIndexNumbersOfStopCodons(DNA_sequence);
@@ -589,7 +590,7 @@ namespace Tigers
                         }
                         else
                         {
-                            message_of_gender = "Gender error.";
+                            message_of_gender = "Gender error.";                                         //We're checking to see if there are codons related to gender.
                         }
 
                     }
@@ -634,7 +635,7 @@ namespace Tigers
                         }
                         else
                         {
-                            Blob_Check_message = "Number of Codons error.";
+                            Blob_Check_message = "Number of Codons error.";                 //We're checking to see if there's a problem with the codon count.
                             break;
                         }
                     }
@@ -679,7 +680,7 @@ namespace Tigers
 
 
         //   Operation6     //-------------------------------------------------------
-        static char[] Operation6(char[] DNA_sequence)
+        static char[] Operation6(char[] DNA_sequence)                   //We print the complement of the code.
         {
             char[] operation6result = new char[DNA_sequence.Length];
 
@@ -722,16 +723,16 @@ namespace Tigers
 
 
         //   Operation8     //-------------------------------------------------------
-        static char[] Operation8(char[] DNA_sequence, int codonCount, int startingFrom)
+        static char[] Operation8(char[] DNA_sequence, int codonCount, int startingFrom)         //By using the entered values ​​in our algorithm, we delete the desired number of codons from the desired location.
         {
             DNA_sequence = Space_remover(DNA_sequence);
 
-            char[] operation8result = new char[DNA_sequence.Length - (codonCount * 3)];
+            char[] operation8result = new char[DNA_sequence.Length - (codonCount * 3)];         
 
-            int temp = (startingFrom - 1) * 3;// 0
+            int temp = (startingFrom - 1) * 3;// 0          
 
-            if (temp != 0)
-            {
+            if (temp != 0)                                                                      //If we explain the algorithm, we print the DNA in the same way until we want it to be deleted. 
+            {                                                                                   //In the remaining part, we skip the deleted part and print the remaining part.
                 for (int i = 0; i < DNA_sequence.Length; i++)
                 {
 
@@ -747,7 +748,7 @@ namespace Tigers
             }
 
 
-            else if (temp == 0)
+            else if (temp == 0)                                                                //There was a problem when it was wanted to be deleted from the first code, we wrote another algorithm specifically for it.
             {
                 for (int i = 0; i < DNA_sequence.Length - ((codonCount * 3)); i++)
                 {
@@ -772,13 +773,13 @@ namespace Tigers
 
 
         //   Operation9     //-------------------------------------------------------
-        static char[] Operation9(char[] DNA_sequence, string Codon_sequence, int StartingFrom)
+        static char[] Operation9(char[] DNA_sequence, string Codon_sequence, int StartingFrom)          //In this operation, we insert a codon to the DNA according to the values ​​entered by the user.
         {
             DNA_sequence = Space_remover(DNA_sequence);
             char[] operation9result = new char[DNA_sequence.Length + Codon_sequence.Length];
 
-            for (int i = 0; i < (StartingFrom - 1) * 3; i++)
-            {
+            for (int i = 0; i < (StartingFrom - 1) * 3; i++)                                            //We created a new char and printed it the same way until the added part, then we printed the added part and finally we printed the rest.
+            {                                                                                           // We have written formulas that will match the entered values.
                 operation9result[i] = DNA_sequence[i];
             }
 
@@ -805,7 +806,7 @@ namespace Tigers
 
 
         //   Operation10     //-------------------------------------------------------
-        static void Operation10(char[] DNA_sequence, string codonSequence, int startingFrom)
+        static void Operation10(char[] DNA_sequence, string codonSequence, int startingFrom)            //Starting from the codon the user wants, we also search for the desired codon in DNA.
         {
             DNA_sequence = Space_remover(DNA_sequence);
             Console.Write("DNA strand      :\t");
@@ -820,11 +821,11 @@ namespace Tigers
             int count = 0;
             bool flag = false;
 
-            for (int i = (startingFrom - 1) * 3; i < DNA_sequence.Length - search.Length; i = i + 3)
+            for (int i = (startingFrom - 1) * 3; i < DNA_sequence.Length - search.Length; i = i + 3)    //As an algorithm, we increased the largest for 3 by 3 because it needed to search for codons properly.
             {
                 count = 0;
-                for (int j = 0; j < search.Length; j++)
-                {
+                for (int j = 0; j < search.Length; j++)                                                //If the number of nested for use increases and the length of the searched codon increases, it says it has found and bool becomes true. 
+                {                                                                                      //It calculates and prints its index.
                     if (DNA_sequence[i + j] == search[j])
                     {
                         count++;
@@ -854,15 +855,15 @@ namespace Tigers
 
 
         //   Operation11     //-------------------------------------------------------
-        static char[] Operation11(char[] DNA_sequence, int NumberOfCodons, int startingFrom)
+        static char[] Operation11(char[] DNA_sequence, int NumberOfCodons, int startingFrom)            //We reverse the specified number of codons in the specified place according to the value entered by the user.
         {
 
             DNA_sequence = Space_remover(DNA_sequence);
 
             if (NumberOfCodons % 2 == 1)
-            {
-                for (int i = ((startingFrom - 1) * 3); i < ((startingFrom - 1) * 3) + ((NumberOfCodons / 2) * 3); i++)
-                {
+            {   
+                for (int i = ((startingFrom - 1) * 3); i < ((startingFrom - 1) * 3) + ((NumberOfCodons / 2) * 3); i++)              //We found the appropriate formulas and made an algorithm to be able to reverse it.
+                {                                                                                                                   
                     char temp = DNA_sequence[i];
                     DNA_sequence[i] = DNA_sequence[i + (((NumberOfCodons - 1) * 3))];
                     DNA_sequence[i + (((NumberOfCodons - 1) * 3))] = temp;
@@ -890,7 +891,7 @@ namespace Tigers
 
 
         //   Operation12    //-------------------------------------------------------
-        static void Operation12(char[] DNA_sequence)
+        static void Operation12(char[] DNA_sequence)                        //In the 12th operation, we found the number of genes in DNA.
         {
 
             DNA_sequence = Space_remover(DNA_sequence);
@@ -915,7 +916,7 @@ namespace Tigers
             Console.Write("\nDNA strand\t:  ");
             Console.WriteLine(AddSpaceBetweenCodons(DNA_sequence));
 
-            if (countera == (counterc + counterb))
+            if (countera == (counterc + counterb))                          //We calculate the number of ATG and the number of ending codons and print them if they are equal.
             {
                 if (2 <= countera && countera <= 7)
                 {
@@ -938,12 +939,16 @@ namespace Tigers
 
 
         //   Operation13    //-------------------------------------------------------
-        static void Operation13(char[] DNA_sequence)
+        static void Operation13(char[] DNA_sequence)                        //We find the shortest gene in DNA.
         {
 
             DNA_sequence = Space_remover(DNA_sequence);
             Console.Write("DNA strand      :  ");
             Console.WriteLine(AddSpaceBetweenCodons(DNA_sequence));
+
+            //If we explain the algorithm of this function. It finds the values ​​of the ending codons and subtracts them from the previous ones, thus finding the gene length.
+            //We assign the gene length to a temporary variable and if the next one is less than ten we assign it as the smallest value. We do this for all and find the smallest.
+            //Meanwhile, by assigning an index value, if the smallest value changes, we change our index value because we want to print the shortest width.
 
             int count = 0, count13 = 99, count13sonkucuk = 99, degisken = 0, degisken1 = 0, counttoplam = 0, atgindexson = 0;
 
@@ -1002,13 +1007,16 @@ namespace Tigers
 
 
         //   Operation14    //-------------------------------------------------------
-        static void Operation14(char[] DNA_sequence)
+        static void Operation14(char[] DNA_sequence)                                    //We find the longest gene in DNA.
         {
             DNA_sequence = Space_remover(DNA_sequence);
             Console.Write("DNA strand      :  ");
             Console.WriteLine(AddSpaceBetweenCodons(DNA_sequence));
 
             int count = 0, count14 = -99, count14sonbuyuk = -99, degisken = 0, degisken1 = 0, counttoplam = 0, atgindexson = 0;
+
+            //The 14th operation and the 13th operation are very similar. We used the same logic in both, but this time we found the long gene.
+            //Because this time, if it is longer than the previous gene, we change and use the same index logic.
 
             for (int i = 0; i < DNA_sequence.Length - 2; i = i + 3)
             {
@@ -1058,7 +1066,7 @@ namespace Tigers
 
 
         //   Operation15    //-------------------------------------------------------
-        static void Operation15(char[] DNA_User1)
+        static void Operation15(char[] DNA_User1)               //We check which nucleotide sequence has the most according to the integer value entered by the user.
         {
             char[] sequance = Space_remover(DNA_User1);
             Console.Write("DNA strand      :  ");
@@ -1073,6 +1081,8 @@ namespace Tigers
             int sırasayac = 0;
             int maxsıra = 0;
 
+            //The algorithm of this operation is similar to the search operation. In this operation, we first find all the nucleotide sequences suitable for the desired value thanks to the two fores,
+            //and then we use the comparison method we used in the 13th and 14th operations. If there are more than one, it prints it.
 
             for (int i = 0; i < sequance.Length - number + 1; i++)
             {
@@ -1136,7 +1146,7 @@ namespace Tigers
 
 
         //   Operation16    //-------------------------------------------------------
-        static void operation16(char[] DNA_sequence)
+        static void operation16(char[] DNA_sequence)                                //We give information about the bond numbers of the DNA we have.
         {
             int abonds = 0, tbonds = 0, gbonds = 0, cbonds = 0, totalbonds = 0;
             DNA_sequence = Space_remover(DNA_sequence);
@@ -1154,7 +1164,7 @@ namespace Tigers
 
                 totalbonds = (gbonds + cbonds) * 3 + (abonds + tbonds) * 2;
             }
-            Console.WriteLine("number of pairing with 2-hydrogen bonds  :  {0}", (abonds + tbonds));
+            Console.WriteLine("number of pairing with 2-hydrogen bonds  :  {0}", (abonds + tbonds));        //We calculate the number of bonds based on the number of nucleotides found.
             Console.WriteLine("number of pairing with 3-hydrogen bonds  :  {0}", (gbonds + cbonds));
             Console.WriteLine("total bonds is  :  {0}", totalbonds);
         }
