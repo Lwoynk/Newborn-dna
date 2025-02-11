@@ -1,32 +1,51 @@
-# DEUCENG Hotel Management System
+# Newborn DNA Simulator
 
-## About the Project / Proje Hakkında
+A C# application that simulates DNA sequence manipulation and BLOB (Binary Large OBject) organism generations. This project provides various DNA operations and analysis tools.
 
-DEUCENG Hotel is a hotel management system developed using Java. This project aims to provide a comprehensive solution for hotel operations management.
+## 🧬 Features
 
-DEUCENG Hotel, Java kullanılarak geliştirilmiş bir otel yönetim sistemidir. Bu proje, otel operasyonları yönetimi için kapsamlı bir çözüm sunmayı amaçlamaktadır.
+### DNA Loading Options
+1. Load from file
+2. Load from string input
+3. Generate random BLOB DNA sequence
 
-## Features / Özellikler
+### DNA Operations
+1. **Check DNA Structure** (Operation 4)
+   - Validates gene structure
+   - Checks codon sequences
+   - Verifies start and stop codons
 
-- Room management / Oda yönetimi
-- Reservation system / Rezervasyon sistemi
-- Guest check-in/check-out / Misafir giriş-çıkış işlemleri
-- Billing and payment processing / Faturalama ve ödeme işlemleri
+2. **BLOB DNA Verification** (Operation 5)
+   - Validates BLOB-specific requirements
+   - Checks gender markers
+   - Verifies gene count
 
-## Technologies Used / Kullanılan Teknolojiler
+3. **DNA Manipulation**
+   - Generate DNA complement (Operation 6)
+   - Delete codons (Operation 8)
+   - Insert codons (Operation 9)
+   - Find codons (Operation 10)
+   - Reverse codons (Operation 11)
 
-- Java
-- Object-Oriented Programming / Nesne Yönelimli Programlama
+4. **DNA Analysis**
+   - Count genes (Operation 12)
+   - Find shortest gene (Operation 13)
+   - Find longest gene (Operation 14)
+   - Find most repeated sequences (Operation 15)
+   - Calculate hydrogen bond statistics (Operation 16)
 
-## Getting Started / Başlangıç
+5. **BLOB Generation Simulation** (Operation 17)
+   - Simulates BLOB reproduction
+   - Handles gene inheritance
+   - Tracks generation health
 
-### Prerequisites / Gereksinimler
+## 🚀 Getting Started
 
-- Java JDK 8 or higher / Java JDK 8 veya üstü
-- Any Java IDE (Eclipse, IntelliJ IDEA, etc.) / Herhangi bir Java IDE (Eclipse, IntelliJ IDEA, vb.)
+### Prerequisites
+- .NET Framework
+- Visual Studio or any C# compatible IDE
 
-### Installation / Kurulum
-
-1. Clone the repository / Depoyu klonlayın
+### Installation
+1. Clone the repository:
 ```bash
-git clone https://github.com/barissolcay/deucenghotel.git
+git clone https://github.com/barissolcay/Newborn-dna.git
